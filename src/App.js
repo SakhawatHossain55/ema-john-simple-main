@@ -13,8 +13,8 @@ import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Shipment from './components/Shipment/Shipment';
 import Login from './components/Login/Login';
-import PrivetRoute from './components/Login/PrivateRoute/PrivateRoute';
 import PrivateRoute from './components/Login/PrivateRoute/PrivateRoute';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const UserContext = createContext();
 

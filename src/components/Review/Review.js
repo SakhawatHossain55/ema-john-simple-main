@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import fakeData from '../../fakeData';
+// import fakeData from '../../fakeData';
 import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
@@ -29,13 +29,22 @@ const Review = () => {
         // console.log(savedCart);//review inside
         const productkeys = Object.keys(savedCart);
         // console.log(productkeys);
+        fetch('https://floating-tundra-81752.herokuapp.com/productsByKeys', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productkeys)
+        })
+        .then(res => res.json())
+        .then(data => setCart(data))
 
-        const cartProducts = productkeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key);
-            product.quantity = savedCart[key];
-            return product;
-        });
-        setCart(cartProducts);
+        // const cartProducts = productkeys.map(key => {
+        //     const product = fakeData.find(pd => pd.key === key);
+        //     product.quantity = savedCart[key];
+        //     return product;
+        // });
+        // setCart(cartProducts);
     }, []);
     let thankyou;
     if(orderPlaced){
